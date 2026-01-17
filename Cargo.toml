@@ -1,7 +1,5 @@
 [workspace]
-members = [
-    "programs/*"
-]
+members = ["task02_anchor_vault/blueshift_anchor_vault/programs/*"]
 resolver = "2"
 
 [profile.release]
