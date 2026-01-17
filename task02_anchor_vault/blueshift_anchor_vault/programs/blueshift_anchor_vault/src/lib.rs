@@ -5,6 +5,7 @@ declare_id!("CqgzbgfP7ZwFYK2Wi9DkKJ74Rn12UMN1EggAR9ur3V3D");
 #[program]
 pub mod blueshift_anchor_vault {
     use super::*;
+    use anchor_lang::system_program::{transfer, Transfer};
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
         msg!("Greetings from: {:?}", ctx.program_id);
@@ -12,8 +13,6 @@ pub mod blueshift_anchor_vault {
     }
 
     pub fn deposit(ctx: Context<VaultAction>, amount: u64) -> Result<()> {
-        use anchor_lang::system_program::{transfer, Transfer};
-
         // 1. verify the vault is empty to prevent double deposits
         require_eq!(
             ctx.accounts.vault.lamports(),
@@ -42,7 +41,24 @@ pub mod blueshift_anchor_vault {
         Ok(())
     }
     pub fn withdraw(ctx: Context<VaultAction>) -> Result<()> {
-        // withdraw logic
+        // 1. Verify the vault contains lamports (not empty)
+        require_neq!(ctx.accounts.vault.lamports(), 0, VaultError::InvalidAmount);
+        // 2. Uses the vault's PDA to sign the transfer on its own behalf
+        let signer_key = ctx.accounts.signer.key();
+        let signer_seeds = &[b"vault", signer_key.as_ref(), &[ctx.bumps.vault]];
+
+        // 3. Transfers all lamports from the vault back to the signer
+        transfer(
+            CpiContext::new_with_signer(
+                ctx.accounts.system_program.to_account_info(),
+                Transfer {
+                    from: ctx.accounts.vault.to_account_info(),
+                    to: ctx.accounts.signer.to_account_info(),
+                },
+                &[&signer_seeds[..]],
+            ),
+            ctx.accounts.vault.lamports(),
+        )?;
         Ok(())
     }
 }
