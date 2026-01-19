@@ -1,6 +1,12 @@
 [workspace]
-members = ["task02_anchor_vault/blueshift_anchor_vault/programs/*"]
+members = [
+  "learn_solana",
+  "task02_anchor_vault/blueshift_anchor_vault/programs/*",
+]
 resolver = "2"
+
+[workspace.dependencies]
+
 
 [profile.release]
 overflow-checks = true
