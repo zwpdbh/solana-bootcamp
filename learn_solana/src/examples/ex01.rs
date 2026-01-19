@@ -45,7 +45,7 @@ pub async fn run() -> Result<()> {
     let space = Mint::LEN;
     let rent = client.get_minimum_balance_for_rent_exemption(space).await?;
 
-    // Create account instruction
+    // Create the mint account instruction
     let create_account_instruction = create_account(
         &fee_payer.pubkey(),      // fee payer
         &mint.pubkey(),           // mint address
@@ -85,3 +85,33 @@ pub async fn run() -> Result<()> {
 
     Ok(())
 }
+
+// Based on the code context, the run function appears to be an asynchronous function that:
+
+//    1. Creates a new keypair for a fee payer account (which will pay for transaction fees)
+//    2. Initializes a Solana RPC client connected to the local test validator
+//    3. Requests an airdrop of 1 billion lamports (1 SOL) to the fee payer account to fund transactions
+//    4. Defines the space required for a new token mint account
+//    5. Gets the rent exemption amount needed for the mint account
+//    6. Creates a new keypair for the mint account
+//    7. Creates an instruction to initialize a new token mint account
+//    8. Builds and sends a transaction containing the mint creation instruction
+//    9. Waits for the transaction to be confirmed
+
+//   Essentially, this function demonstrates how to create a new token mint on Solana using the Token-2022 program. It handles the prerequisite steps like funding the account and
+//   calculating rent requirements before creating the actual token mint.
+
+// so, step 3 is needed which does " 3. Requests an airdrop of 1 billion lamports (1 SOL) to the fee payer account to fund transactions" before create and submitting the transaction
+//   which init the new token mint?
+
+// ✦ Yes, that's correct! The airdrop in step 3 is essential because:
+
+//    1. Transaction Fees: Creating a new token mint requires a transaction to be submitted to the Solana network, and all transactions require SOL to pay fees.
+
+//    2. Rent Requirements: The new mint account needs to be rent-exempt, meaning it requires a certain amount of SOL to remain stored on-chain permanently. This is calculated based on
+//       the space required for the account data.
+
+//    3. Account Funding: The fee payer account needs sufficient SOL to cover both the transaction fees and the rent deposit for the new mint account.
+
+//   Without the airdrop to fund the fee payer account, the transaction to create the token mint would fail due to insufficient funds. The airdrop essentially provides the necessary
+//   SOL to pay for creating and initializing the new token mint account on the blockchain.
