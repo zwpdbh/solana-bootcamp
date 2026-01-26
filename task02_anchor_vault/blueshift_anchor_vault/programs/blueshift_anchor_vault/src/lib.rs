@@ -1,6 +1,7 @@
 use anchor_lang::prelude::*;
 
-declare_id!("CqgzbgfP7ZwFYK2Wi9DkKJ74Rn12UMN1EggAR9ur3V3D");
+// declare_id!("CqgzbgfP7ZwFYK2Wi9DkKJ74Rn12UMN1EggAR9ur3V3D");
+declare_id!("22222222222222222222222222222222222222222222");
 
 #[program]
 pub mod blueshift_anchor_vault {
@@ -21,7 +22,7 @@ pub mod blueshift_anchor_vault {
         );
 
         // 2. Ensurethe deposite amout exceeds the rent-exempt minimum for a SystemAccount
-        require_eq!(
+        require_gt!(
             amount,
             Rent::get()?.minimum_balance(0),
             VaultError::InvalidAmount

@@ -6,7 +6,7 @@ mod mytracer;
 pub use error::{Error, Result};
 
 use clap::Parser;
-use command::{Args, Command, ExCase};
+use command::{Args, Command};
 
 use crate::mytracer::setup_simple_tracing;
 
@@ -19,16 +19,8 @@ async fn main() -> Result<()> {
         Command::Ex01 => {
             let _ = examples::ex01_run().await?;
         }
-        Command::Ex02 { case } => match case {
-            ExCase::Case01 { .. } => {
-                todo!()
-            }
-            ExCase::Case02 => {
-                todo!()
-            }
-        },
-        Command::Ex03 { case: _case } => {
-            todo!()
+        Command::Ex02 => {
+            let _ = examples::ex02_run().await?;
         }
     }
 
