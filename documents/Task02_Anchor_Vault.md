@@ -43,3 +43,4 @@
 - [Task02: Anchor Vault](https://learn.blueshift.gg/en/challenges/anchor-vault)
 - [Anchor 101](https://learn.blueshift.gg/en/courses/anchor-for-dummies/anchor-101)
 - [Anchor Accounts](https://learn.blueshift.gg/en/courses/anchor-for-dummies/anchor-accounts)
+- [Solana/更多开发者工具/Anchor 环境搭建](https://accu.cc/content/solana/tool_anchor_install/)

@@ -1,3 +1,4 @@
+#![allow(unused)]
 use anchor_lang::prelude::*;
 
 mod errors;
