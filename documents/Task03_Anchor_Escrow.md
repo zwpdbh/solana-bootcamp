@@ -2,7 +2,7 @@
 
 ## References 
 
-- [Anchor Escrow -- 托管服务](https://learn.blueshift.gg/en/challenges/anchor-escrow)
+- [Task03: Anchor Escrow -- 托管服务](https://learn.blueshift.gg/en/challenges/anchor-escrow)
 - [Programs with Anchor (default choice)](https://github.com/solana-foundation/solana-dev-skill/blob/main/skill/programs-anchor.md)
 - [Solana/更多开发者工具/Anchor 里的简单数据存储合约](https://accu.cc/content/solana/tool_anchor_ss/)
   - [github repo -- Pxsol simple storage with Anchor](https://github.com/mohanson/pxsol-ss-anchor/blob/master/programs/pxsol-ss-anchor/src/lib.rs)

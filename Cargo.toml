@@ -3,6 +3,7 @@ members = [
   "learn_solana",
   "task02_anchor_vault/blueshift_anchor_vault/programs/*",
   "task03_anchor_escrow/blueshift_anchor_escrow/programs/*",
+  "example_archor_store_data/pxsol-ss/programs/*",
 ]
 resolver = "2"
 
